@@ -1,0 +1,10 @@
+#!/bin/bash
+
+sv start postgres || exit 1
+
+source /etc/envvars
+env
+
+cd /sso-devise-omniauth-provider
+exec 2>&1
+exec bundle exec passenger start -p 8900 -e production
